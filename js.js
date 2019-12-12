@@ -7,7 +7,7 @@ var splitParaula;
 var letra;
 var lletra;
 var interval;
-var posRan = Math.floor(Math.random() * pantallaW);
+var posRan = posRan;
 puntos.textContent = 1000;
 
 initPalabra();
@@ -84,7 +84,7 @@ function getRandomPalabra() {
     "ONDAS SONORAS",
     "AMPLIFICADOR",
     "AUDIOFREQUENCIA",
-    "TRANSMISIÓN",
+    "TRANSMISION",
     "ANTENA",
     "OSCILADOR"
   ];
@@ -94,7 +94,6 @@ function getRandomPalabra() {
 //#endregion
 
 function programa() {
-  //setTimeout(crearLletra, 100, letra); // creo la lletra amb el valor
   letra = getRandomLetra();
   crearLletra(letra);
   setInterval(colision, 1000, letra, 'jugador');
@@ -107,6 +106,7 @@ function initPalabra() {
 }
 function crearLletra(value) {
   $("#pantalla").append('<div class="caida" id="' + value + '"> ' + value + "</div>");
+  posRan = Math.floor(Math.random() * pantallaW);
   //document.getElementById(value).style.left = posRan + "px"; //para cambiar la posicion de inicio
 }
 
@@ -126,27 +126,34 @@ function colision(letra, jugador) {
   ediv2.bottom = Number($(ediv2).offset().top) + Number($(ediv2).height());
 
   if (ediv1.right > ediv2.left && ediv1.left < ediv2.right && ediv1.top < ediv2.bottom && ediv1.bottom > ediv2.top) {
-
-
-    // if (splitParaula.length != 0) {
     for (var lletra in splitParaula) {
-
       //agafo cada lletra de la paraula
       if (splitParaula[lletra] === letra) {
         // i la comparo amb el valor del div
         //si coincideix l'elimino
         delete splitParaula[lletra];
         document.getElementById("nuevaPalabra").innerHTML = splitParaula.join("");
-        $(".caida").remove()
+        //$(".caida").remove();
       }
     }
-    // }
-    // else {
-    //   programa();
-    // }
-
+  }
+  // else {
+  //   puntos.textContent = puntos.textContent - 100;
+  // }
+  if (splitParaula.length != 0) {
+    setTimeout(programa, 2000);
+    $(".caida").remove();
+  }
+  else {
+    var r = confirm("Quieres volver a jugar?");
+    if (r == true) {
+      location.reload();
+      //initPalabra();
+      //program();
+    } else {
+      //volver al menu principal
+    }
   }
 
 }
 //#endregion
-//programa();
