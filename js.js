@@ -1,14 +1,15 @@
 var jugador = document.getElementById("jugador").innerHTML; //innerHTML para coger los datos del div
-var puntos = document.getElementById("puntos");
+//var puntos = document.getElementById("puntos");
 var palabra = document.getElementById("nuevaPalabra");
-var nuevaPalabra = document.getElementById("nuevaPalabra");
+var btnSi = document.getElementById("si");
+var btnNo = document.getElementById("no");
 var pantallaW = 1500;
 var splitParaula;
 var letra;
 var lletra;
 var interval;
 var posRan = posRan;
-puntos.textContent = 1000;
+//puntos.textContent = 1000;
 
 initPalabra();
 programa();
@@ -122,13 +123,24 @@ function colision(letra, jugador) {
       for (var lletra in splitParaula) {
         //agafo cada lletra de la paraula
         if (splitParaula[lletra] === letra) { // i la comparo amb el valor del div
-          delete splitParaula[lletra]; //si coincideix l'elimino 
+          //delete splitParaula[lletra]; //si coincideix l'elimino 
+          splitParaula.splice(lletra, 1);
           document.getElementById("nuevaPalabra").innerHTML = splitParaula.join("");
           //$(".caida").remove();
         }
       }
     }
 
+    if (splitParaula.length != 0) {
+      $('#exampleModalCenter').modal(show);
+      // setTimeout(programa, 2000);
+      // $(".caida").remove();
+
+    }
+    else {
+
+
+    }
     if (splitParaula.length != 0) {
       setTimeout(programa, 2000);
       $(".caida").remove();

@@ -30,22 +30,6 @@ header {
     text-align: center;
 }
 
-#puntos {
-    float: left;
-    text-align: center;
-}
-
-#palabra {
-    float: right;
-    text-align: center;
-    color: #FF7C4D;
-    font-size: 8ex;
-    position: fixed;
-    bottom: 50px;
-    left: 0;
-    right: 0;
-}
-
 #nuevaPalabra {
     float: right;
     text-align: center;
@@ -86,7 +70,7 @@ footer {
 }
 
 #pantalla {
-    background-color: 5ADBFF;
+    background-color: #5ADBFF;
     width: 100%;
     height: 100vh;
 }

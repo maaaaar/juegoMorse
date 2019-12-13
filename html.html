@@ -8,15 +8,60 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="css.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
   </head>
 
   <body>
-    <div class="menu">
-      <p><span id="puntos"> </span></p>
-    </div>
+    <!-- <div class="menu">
+       <p><span id="puntos"> </span></p> 
+    </div> -->
     <div id="pantalla">
       <div id="micro">
         <img id="jugador" src="grabadora-de-voz.png" alt="Jugador" />
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">
+              Quieres volver a jugar?
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button
+              id="si"
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Si
+            </button>
+            <button id="no" type="button" class="btn btn-primary">No</button>
+          </div>
+        </div>
       </div>
     </div>
   </body>
