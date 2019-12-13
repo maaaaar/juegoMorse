@@ -44,7 +44,7 @@ $(document).on("keydown", function (e) {
 //#region Funciones arreys aleatorias
 function getRandomLetra() {
   // get a new random number
-  var num = Math.floor(Math.random() * 26);
+  var num = Math.floor(Math.random() * 18);
   //#region  array letras
   var abc = [
     "A",
@@ -54,10 +54,7 @@ function getRandomLetra() {
     "E",
     "F",
     "G",
-    "H",
     "I",
-    "J",
-    "K",
     "L",
     "M",
     "N",
@@ -67,12 +64,7 @@ function getRandomLetra() {
     "R",
     "S",
     "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z"
+    "U"
   ];
   //#endregion
   return abc[num];
@@ -96,7 +88,7 @@ function getRandomPalabra() {
 function programa() {
   letra = getRandomLetra();
   crearLletra(letra);
-  setInterval(colision, 1000, letra, 'jugador');
+  setInterval(colision, 1000, letra, jugador);
 }
 
 function initPalabra() {
@@ -120,40 +112,37 @@ function colision(letra, jugador) {
   ediv1.right = Number($(ediv1).offset().left) + Number($(ediv1).width());
   ediv1.bottom = Number($(ediv1).offset().top) + Number($(ediv1).height());
 
-  ediv2.top = $(ediv2).offset().top;
-  ediv2.left = $(ediv2).offset().left;
-  ediv2.right = Number($(ediv2).offset().left) + Number($(ediv2).width());
-  ediv2.bottom = Number($(ediv2).offset().top) + Number($(ediv2).height());
+  if (ediv2) {
+    ediv2.top = $(ediv2).offset().top;
+    ediv2.left = $(ediv2).offset().left;
+    ediv2.right = Number($(ediv2).offset().left) + Number($(ediv2).width());
+    ediv2.bottom = Number($(ediv2).offset().top) + Number($(ediv2).height());
+    console.log(ediv2.top + ' ' + ediv2.left);
+    if (ediv1.right > ediv2.left && ediv1.left < ediv2.right && ediv1.top < ediv2.bottom && ediv1.bottom > ediv2.top) {
+      for (var lletra in splitParaula) {
+        //agafo cada lletra de la paraula
+        if (splitParaula[lletra] === letra) { // i la comparo amb el valor del div
+          delete splitParaula[lletra]; //si coincideix l'elimino 
+          document.getElementById("nuevaPalabra").innerHTML = splitParaula.join("");
+          //$(".caida").remove();
+        }
+      }
+    }
 
-  if (ediv1.right > ediv2.left && ediv1.left < ediv2.right && ediv1.top < ediv2.bottom && ediv1.bottom > ediv2.top) {
-    for (var lletra in splitParaula) {
-      //agafo cada lletra de la paraula
-      if (splitParaula[lletra] === letra) {
-        // i la comparo amb el valor del div
-        //si coincideix l'elimino
-        delete splitParaula[lletra];
-        document.getElementById("nuevaPalabra").innerHTML = splitParaula.join("");
-        //$(".caida").remove();
+    if (splitParaula.length != 0) {
+      setTimeout(programa, 2000);
+      $(".caida").remove();
+    }
+    else {
+      var r = confirm("Quieres volver a jugar?");
+      if (r == true) {
+        location.reload(); // reiniciar el juego
+        //initPalabra();
+        //program();
+      } else {
+        //volver al menu principal
       }
     }
   }
-  // else {
-  //   puntos.textContent = puntos.textContent - 100;
-  // }
-  if (splitParaula.length != 0) {
-    setTimeout(programa, 2000);
-    $(".caida").remove();
-  }
-  else {
-    var r = confirm("Quieres volver a jugar?");
-    if (r == true) {
-      location.reload();
-      //initPalabra();
-      //program();
-    } else {
-      //volver al menu principal
-    }
-  }
-
 }
 //#endregion
