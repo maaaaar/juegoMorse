@@ -132,28 +132,19 @@ function colision(letra, jugador) {
     }
 
     if (splitParaula.length != 0) {
-      $('#exampleModalCenter').modal(show);
-      // setTimeout(programa, 2000);
-      // $(".caida").remove();
-
-    }
-    else {
-
-
-    }
-    if (splitParaula.length != 0) {
       setTimeout(programa, 2000);
       $(".caida").remove();
     }
     else {
-      var r = confirm("Quieres volver a jugar?");
-      if (r == true) {
-        location.reload(); // reiniciar el juego
-        //initPalabra();
-        //program();
-      } else {
-        //volver al menu principal
-      }
+      $('#exampleModalCenter').modal(show);
+      btnSi.addEventListener("click", function botonSi() {
+        location.reload();
+      })
+      btnNo.addEventListener("click", function botonNo() {
+        //vuelve menu principal
+      });
+
+
     }
   }
 }
