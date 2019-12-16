@@ -130,13 +130,12 @@ function colision(letra, jugador) {
         }
       }
     }
-
     if (splitParaula.length != 0) {
       setTimeout(programa, 2000);
       $(".caida").remove();
     }
     else {
-      $('#exampleModalCenter').modal(show);
+      $('#exampleModalCenter').modal();
       btnSi.addEventListener("click", function botonSi() {
         location.reload();
       })
